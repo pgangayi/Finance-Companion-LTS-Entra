@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.sql import func
 from app.database import Base
+from enum import Enum
 
 class ProjectStatus(str, Enum):
     PLANNED = "Planned"

@@ -21,6 +21,10 @@ export const useApi = (url, options = {}) => {
   };
 
   useEffect(() => {
+    if (!url) {
+      setLoading(false);
+      return;
+    }
     fetchData();
   }, [url]);
 

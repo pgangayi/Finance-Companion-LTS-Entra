@@ -27,6 +27,7 @@ export function AuthProvider({ children }) {
 
   const validateToken = async (token) => {
     try {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const response = await axios.get('/api/v1/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -34,6 +35,7 @@ export function AuthProvider({ children }) {
     } catch (error) {
       // Token is invalid, remove it
       localStorage.removeItem('token');
+      delete axios.defaults.headers.common['Authorization'];
     } finally {
       setLoading(false);
     }

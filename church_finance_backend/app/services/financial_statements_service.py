@@ -7,6 +7,7 @@ from sqlalchemy import and_, func
 from typing import Dict, List
 from datetime import date
 import pandas as pd
+from io import BytesIO
 
 class FinancialStatementsService:
     def __init__(self, db: Session):
