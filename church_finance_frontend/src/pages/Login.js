@@ -36,18 +36,20 @@ const Login = () => {
   const handleMicrosoftLogin = async () => {
     setLoading(true);
     setError('');
-    
+
     try {
-      // Get Microsoft Entra login URL from backend
       const response = await fetch('/api/v1/auth/ms-entra/login-url');
       const data = await response.json();
-      
-      // Redirect to Microsoft Entra login page
       window.location.href = data.login_url;
     } catch (err) {
       setError('Failed to initiate Microsoft login');
       setLoading(false);
     }
+  };
+
+  const handleForgotPassword = () => {
+    alert('Forgot password flow not implemented yet.');
+    // Or navigate('/forgot-password') if you have a route
   };
 
   return (
@@ -64,7 +66,7 @@ const Login = () => {
             Sign in to your account
           </p>
         </div>
-        
+
         {/* Microsoft Entra Login Button */}
         <div className="mt-4">
           <button
@@ -76,7 +78,7 @@ const Login = () => {
             Sign in with Microsoft
           </button>
         </div>
-        
+
         <div className="relative my-4">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300"></div>
@@ -87,7 +89,7 @@ const Login = () => {
             </span>
           </div>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="alert alert-error">
@@ -131,9 +133,13 @@ const Login = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="text-blue-600 hover:text-blue-500 font-medium"
+              >
                 Forgot your password?
-              </a>
+              </button>
             </div>
           </div>
 

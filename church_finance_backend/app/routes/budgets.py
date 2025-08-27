@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.database import get_db
-from app.models.province import Budget
+from app.models.budget import Budget
 from app.schemas.budget import Budget as BudgetSchema, BudgetCreate, BudgetUpdate
 
 router = APIRouter()

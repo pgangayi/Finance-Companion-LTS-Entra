@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 // Custom hook for API calls with loading and error states
@@ -7,7 +7,12 @@ export const useApi = (url, options = {}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
+    if (!url) {
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
@@ -18,15 +23,11 @@ export const useApi = (url, options = {}) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [url, options]);
 
   useEffect(() => {
-    if (!url) {
-      setLoading(false);
-      return;
-    }
     fetchData();
-  }, [url]);
+  }, [fetchData]);
 
   const refetch = () => {
     fetchData();

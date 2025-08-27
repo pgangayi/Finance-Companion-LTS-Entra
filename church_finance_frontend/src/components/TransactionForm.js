@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 const TransactionForm = ({ transaction, onSubmit, onCancel, provinces, departments, projects }) => {
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: transaction || {
       date: new Date().toISOString().split('T')[0],
       type: 'receipt',
@@ -22,14 +22,10 @@ const TransactionForm = ({ transaction, onSubmit, onCancel, provinces, departmen
   }, [transaction, reset]);
 
   const handleFormSubmit = (data) => {
-    // Convert amount to number
     data.amount = parseFloat(data.amount);
-    
-    // Convert empty strings to null for foreign keys
     data.project_id = data.project_id || null;
     data.department_id = data.department_id || null;
     data.province_id = data.province_id || null;
-    
     onSubmit(data);
   };
 
@@ -63,7 +59,7 @@ const TransactionForm = ({ transaction, onSubmit, onCancel, provinces, departmen
         <input
           type="number"
           step="0.01"
-          {...register('amount', { 
+          {...register('amount', {
             required: 'Amount is required',
             min: { value: 0.01, message: 'Amount must be greater than 0' }
           })}

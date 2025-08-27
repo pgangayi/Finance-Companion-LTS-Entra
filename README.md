@@ -18,6 +18,22 @@ This script will:
 5. If Node.js is available, install frontend dependencies and start the frontend server on http://localhost:3000
 6. Open your browser to the frontend application
 
+**Note:** If Node.js/npm is not installed or accessible, the script will start only the backend application.
+
+## Alternative Startup Scripts
+
+### Start Backend Only
+To start only the backend application:
+```bash
+python start_backend.py
+```
+
+### Start Frontend Only
+To start only the frontend application (requires Node.js and npm):
+```bash
+python start_frontend.py
+```
+
 ## Manual Setup
 
 ### Backend
@@ -40,7 +56,7 @@ This script will:
 ## Requirements
 
 - Python 3.8+
-- Node.js 14+ (for frontend)
+- Node.js 14+ (for frontend, optional)
 - pip (Python package manager)
 
 ## Features
@@ -69,3 +85,9 @@ This script will:
 - Chart.js for data visualization
 - Tailwind CSS for styling
 - React Hook Form for form handling
+
+## Current Status
+
+The backend application is currently running and accessible at http://localhost:8000. The API documentation is available at http://localhost:8000/docs.
+
+If you have Node.js and npm installed, you can also run the frontend application which will be accessible at http://localhost:3000.

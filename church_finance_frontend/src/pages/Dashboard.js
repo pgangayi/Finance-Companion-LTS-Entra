@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DashboardCard from '../components/DashboardCard';
 import ChartContainer from '../components/ChartContainer';
-import { FaChartLine, FaMoneyBillWave, FaProjectDiagram, FaBalanceScale } from 'react-icons/fa';
+import { FaMoneyBillWave, FaProjectDiagram, FaBalanceScale } from 'react-icons/fa';
 import { useApi } from '../hooks/useApi';
 
 const Dashboard = () => {

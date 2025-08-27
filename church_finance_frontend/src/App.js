@@ -11,8 +11,7 @@ import Obligations from './pages/Obligations';
 import Reports from './pages/Reports';
 import ProvinceStatement from './pages/ProvinceStatement';
 import Chatbot from './components/Chatbot';
-import { AuthProvider } from './context/AuthContext';
-import { useAuth } from './hooks/useAuth';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import './App.css';
 
 function App() {

@@ -1,3 +1,4 @@
+from enum import Enum
 from sqlalchemy import Column, Integer, Date, DateTime, Numeric, String, Text, ForeignKey
 from sqlalchemy.sql import func
 from app.database import Base

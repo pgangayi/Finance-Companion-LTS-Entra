@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { FaUser, FaSignOutAlt, FaBell } from 'react-icons/fa';
+import { FaSignOutAlt, FaBell } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, logout } = useAuth();

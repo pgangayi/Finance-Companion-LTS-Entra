@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  FaTachometerAlt, 
-  FaReceipt, 
-  FaChartBar, 
-  FaProjectDiagram, 
-  FaFileInvoice, 
-  FaUsers, 
-  FaCogs 
+import {
+  FaTachometerAlt,
+  FaReceipt,
+  FaChartBar,
+  FaProjectDiagram,
+  FaFileInvoice,
+  FaUsers
 } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
@@ -30,14 +29,14 @@ const Sidebar = () => {
     { name: 'Province Statement', path: '/province-statement', icon: FaUsers, roles: ['Admin', 'FinanceChair', 'Treasurer', 'Secretary'] },
   ];
 
-  const filteredMenuItems = menuItems.filter(item => 
+  const filteredMenuItems = menuItems.filter(item =>
     item.roles.includes(user?.role)
   );
 
   return (
     <div className={`bg-gray-800 text-white h-screen ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
       <div className="p-4 border-b border-gray-700">
-        <button 
+        <button
           onClick={toggleSidebar}
           className="text-gray-400 hover:text-white focus:outline-none"
         >
@@ -49,7 +48,7 @@ const Sidebar = () => {
           {filteredMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
-            
+
             return (
               <li key={item.path}>
                 <Link
