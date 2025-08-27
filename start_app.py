@@ -38,7 +38,7 @@ def install_backend_dependencies(dry_run=False):
     ]
 
     optional_deps = [
-        "psycopg2-binary==2.9.9",
+        "psycopg2-binary==2.9.6", # or comment out if using SQLite locally
         "pandas==2.2.2",
         "openpyxl==3.1.2",
         "alembic==1.13.1"
@@ -61,7 +61,7 @@ def install_backend_dependencies(dry_run=False):
 
         try:
             print(f"📦 Installing {package}...")
-            subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, capture_output=True)
+            subprocess.run([sys.executable, "-m", "uvicorn", "app.main:app", "--reload"], cwd="church_finance_backend", check=True)
             installed.append(package)
             return True
         except subprocess.CalledProcessError:
@@ -96,7 +96,7 @@ def start_backend():
 
 def start_frontend():
     print("\n🌐 Starting frontend (React)...")
-    frontend_path = os.path.join(os.getcwd(), "frontend")
+    frontend_path = os.path.join(os.getcwd(), "church_finance_frontend")
     if not os.path.isdir(frontend_path):
         print("⚠️ Frontend directory not found. Skipping frontend startup.")
         return
