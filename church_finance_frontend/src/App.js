@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -16,32 +16,32 @@ import './App.css';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router> {/* ✅ Router must wrap AuthProvider */}
+      <AuthProvider>
         <div className="min-h-screen bg-gray-50">
           <AppContent />
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
 function AppContent() {
   const { user, loading } = useAuth();
-  
+
   if (loading) {
     return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
-  
+
   if (!user) {
     return (
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
   }
-  
+
   return (
     <>
       <Navbar />
@@ -49,7 +49,7 @@ function AppContent() {
         <Sidebar />
         <main className="flex-1 p-6">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/budgets" element={<Budgets />} />
@@ -58,6 +58,7 @@ function AppContent() {
             <Route path="/reports" element={<Reports />} />
             <Route path="/province-statement" element={<ProvinceStatement />} />
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<div>404 - Page Not Found</div>} />
           </Routes>
         </main>
       </div>

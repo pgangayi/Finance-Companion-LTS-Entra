@@ -26,4 +26,4 @@ class Obligation(ObligationBase):
     updated_at: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True  # replaces orm_mode in Pydantic v2

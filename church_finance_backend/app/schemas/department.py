@@ -6,7 +6,7 @@ from decimal import Decimal
 class DepartmentBase(BaseModel):
     name: str
     description: Optional[str] = None
-    budget_allocated: Optional[Decimal] = 0.00
+    budget_allocated: Optional[Decimal] = Decimal("0.00")
 
 class DepartmentCreate(DepartmentBase):
     pass
@@ -22,4 +22,4 @@ class Department(DepartmentBase):
     updated_at: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True  # replaces orm_mode in Pydantic v2
